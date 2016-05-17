@@ -132,7 +132,7 @@ class BackendMain extends \Backend
 
 		/** @var BackendTemplate|object $objTemplate */
 		$objTemplate = new \BackendTemplate('be_welcome');
-		$objTemplate->messages = \Message::generateUnwrapped() . $this->getSystemMessages();
+		$objTemplate->messages = \System::getContainer()->get('twig')->render('@ContaoCore/messages.html.twig', array('unwrapped' => true)) . $this->getSystemMessages();
 		$objTemplate->loginMsg = $GLOBALS['TL_LANG']['MSC']['firstLogin'];
 
 		// Add the login message
